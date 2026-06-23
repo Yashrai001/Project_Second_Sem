@@ -1,0 +1,1 @@
+I developed an Amazon clone using HTML, CSS, and JavaScript. HTML was used to create the structure, CSS for styling, and JavaScript for interactivity. The project includes a product search feature, add-to-cart functionality using localStorage, and a smooth back-to-top button. JavaScript accesses HTML elements through the DOM and responds to user actions using event listeners.
