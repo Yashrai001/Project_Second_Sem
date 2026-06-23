@@ -7,6 +7,70 @@
     <link rel="stylesheet" href="style.css">
     <title>Amazon Clone</title>
 </head>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    
+        // Search
+        const searchBtn = document.querySelector(".search-icon");
+        const searchInput = document.querySelector(".search-input");
+    
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener("click", function () {
+                let value = searchInput.value.toLowerCase();
+    
+                document.querySelectorAll(".box").forEach(box => {
+                    let title = box.querySelector("h2").innerText.toLowerCase();
+    
+                    if (title.includes(value) || value === "") {
+                        box.style.display = "block";
+                    } else {
+                        box.style.display = "none";
+                    }
+                });
+            });
+        }
+    
+        // Cart
+        let count = localStorage.getItem("cartCount") || 0;
+    
+        const cartText = document.querySelector(".cart-text");
+    
+        if (cartText) {
+            cartText.innerText = `Cart (${count})`;
+        }
+    
+        document.querySelectorAll(".box").forEach(box => {
+    
+            const btn = document.createElement("button");
+            btn.innerText = "Add to Cart";
+            btn.className = "add-cart";
+    
+            btn.onclick = function () {
+                count++;
+                localStorage.setItem("cartCount", count);
+    
+                if (cartText) {
+                    cartText.innerText = `Cart (${count})`;
+                }
+            };
+    
+            box.querySelector(".box-content").appendChild(btn);
+        });
+    
+        // Back to Top
+        const topBtn = document.querySelector(".foot-panel1");
+    
+        if (topBtn) {
+            topBtn.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        }
+    
+    });
+    </script>
 <body>
     <header>
         <div class ="navbar">
@@ -27,8 +91,8 @@
                 <option>All</option>
                 <option>None</option>
             </select>
-            <input placeholder="Search Amazon" class="search-input">
-            <div class="search-icon">
+            <input placeholder="Search Amazon" class="search-input" id="searchInput">
+            <div class="search-icon" id="searchBtn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
          </div>
@@ -43,10 +107,10 @@
             <p class="return-2">& Orders</p>
           </div>
 
-          <div class="cart border">
+          <div class="cart border" id="cart">
             <div class="cart-icon">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <p class="cart-text">Cart</p>
+                <p class="cart-text" id="cartCount">Cart (0)</p>
             </div>
             
           </div>

@@ -86,6 +86,15 @@
     border:2px solid orange;
 }
 
+.add-cart{
+    margin-top:10px;
+    padding:8px 12px;
+    background:#ffd814;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+}
+
 /** box 4 **/
 .sign-1{
     font-size:0.85rem;
